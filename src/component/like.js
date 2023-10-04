@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 
 class Like extends Component {
     render() {
-        let classes = "fa fa-heart";
+        let classes = "fa fa-lg fa-heart";
         if (!this.props.liked)
             classes += "-o"
         return (

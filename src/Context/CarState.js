@@ -31,7 +31,7 @@ const CarState = (props) => {
     }
 
     return (
-        <CarContext.Provider value={{ cars, pageSize, searchQuery, currentPage, setSearchQuery, updateCars, filteredCar, updatePage }}>
+        <CarContext.Provider value={{ cars, pageSize, searchQuery, currentPage, setCurrentPage, setSearchQuery, updateCars, filteredCar, updatePage }}>
             {props.children}
         </CarContext.Provider>
     );

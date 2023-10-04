@@ -6,9 +6,10 @@ import CarContext from '../Context/CarContext.js';
 
 function ShowRoom() {
     const context = useContext(CarContext);
-
+    
     const handlePageChange = (page) => {
         context.updatePage(page);
+        setCurrentPage(page)
     };
 
     const handleLiked = (car) => {
@@ -20,7 +21,21 @@ function ShowRoom() {
         updateCars(cars);
     };
 
-    const { cars, pageSize, currentPage, searchQuery } = context;
+    const { cars, pageSize, currentPage, searchQuery, setCurrentPage } = context;
+    const handlePrevious = () => {
+        if (currentPage == 1)
+            return;
+        let newPage = currentPage - 1;
+        setCurrentPage(newPage)
+    }
+
+    const handleNext = () => {
+        let totalCars = cars.length;
+        if (currentPage == Math.ceil(totalCars / pageSize))
+            return;
+        let newPage = currentPage + 1;
+        setCurrentPage(newPage);
+    }
 
     let filteredCars; 
     if (searchQuery){
@@ -51,17 +66,30 @@ function ShowRoom() {
                     ))
                 )}
             </div>
-            {searchQuery ? <Pagination
-                itemsCount={filteredCars.length}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-            /> : <Pagination
-                itemsCount={cars.length}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-            />}
+            <ul class="pagination">
+                <li class="page-item">
+                    <span className={`page-link ${currentPage === 1 ? "disabled" : ""}`} style={{ cursor: "pointer" }} onClick={handlePrevious}>Previous</span>
+                </li>
+                <li>
+                    {searchQuery ?
+                        <Pagination
+                            itemsCount={filteredCars.length}
+                            pageSize={pageSize}
+                            currentPage={currentPage}
+                            onPageChange={handlePageChange}
+                        /> :
+                        <Pagination
+                            itemsCount={cars.length}
+                            pageSize={pageSize}
+                            currentPage={currentPage}
+                            onPageChange={handlePageChange}
+                        />}
+                </li>
+                <li class="page-item">
+                    <a className={`page-link ${currentPage === Math.ceil(cars.length / pageSize) ? "disabled" : ""}`} style={{ cursor: "pointer" }} onClick={handleNext}>Next</a>
+                </li>
+            </ul>
+           
         </div>
     );
 }

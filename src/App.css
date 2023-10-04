@@ -9,3 +9,7 @@
     padding: 1px 30px;
     font-size: 13px;
 }
+.badge{
+    --bs-badge-border-radius: 2.375rem !important;
+    font-weight: 400
+}
