@@ -1,0 +1,11 @@
+.cardButton{
+    margin-bottom: 0.7rem;
+    margin-right: 1rem;
+    font-size: 13px;
+    padding: 7px
+}
+
+.searchButton{
+    padding: 1px 30px;
+    font-size: 13px;
+}
