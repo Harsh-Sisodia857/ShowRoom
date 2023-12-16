@@ -45,7 +45,7 @@ class CarsCard extends Component {
                         <Button size="small">$440/ month</Button>
                         <span>
                             <Like onClick={() => onLike(car)} liked={ like } />
-                            <button type="button" className="btn btn-primary cardButton">Rent Now</button>
+                            <button type="button" className="btn btn-primary cardButton">Buy Now</button>
                         </span>
                     </div>
                 </Card>
